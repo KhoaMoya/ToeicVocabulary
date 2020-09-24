@@ -1,0 +1,76 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorBlack5</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="TextStyle"/>
+
+    <style name="TextStyle.Item">
+        <item name="fontFamily">@font/productsans_medium</item>
+        <item name="android:textColor">@color/colorBlack40</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextStyle.Label">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/productsans_regular</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="TextStyle.Value">
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">@font/productsans_black</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="TextStyle.Title">
+        <item name="android:textSize">27sp</item>
+        <item name="fontFamily">@font/productsans_black</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">16dp</item>
+    </style>
+
+    <style name="TextStyle.Word">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/productsans_medium</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="TextStyle.Mean">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/productsans_medium</item>
+        <item name="android:textColor">@color/colorBlack60</item>
+    </style>
+
+    <style name="TextStyle.Spelling">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/productsans_light</item>
+        <item name="android:textColor">@color/colorBlack60</item>
+    </style>
+    
+    <style name="ButtonStyle"/>
+
+    <style name="ButtonStyle.Action">
+        <item name="android:background">@drawable/bg_btn_action</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:minHeight">42dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/productsans_medium</item>
+    </style>
+
+    <style name="ButtonStyle.Select">
+        <item name="background">@drawable/bg_btn_select</item>
+        <item name="minHeight">64dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/productsans_medium</item>
+    </style>
+
+</resources>

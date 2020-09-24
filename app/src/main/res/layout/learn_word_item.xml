@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="expandableWord"
+            type="com.khoa.toeicvocabulary.models.ExpandableWord" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/item_margin"
+            android:padding="@dimen/padding"
+            android:background="@drawable/ripple_item"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/cbKnown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                app:checked="@{expandableWord.word.status}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtWord"
+                style="@style/TextStyle.Word"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/item_margin"
+                android:text="@{expandableWord.word.name}"
+                app:layout_constraintEnd_toStartOf="@id/imgSpeech"
+                app:layout_constraintStart_toEndOf="@id/cbKnown"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Contracts" />
+
+            <TextView
+                android:id="@+id/txtSpelling"
+                style="@style/TextStyle.Spelling"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{expandableWord.word.spelling}"
+                app:layout_constraintEnd_toEndOf="@id/txtWord"
+                app:layout_constraintStart_toStartOf="@id/txtWord"
+                app:layout_constraintTop_toBottomOf="@id/txtWord"
+                tools:text="/fakjqeads/" />
+
+            <TextView
+                style="@style/TextStyle.Mean"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_margin"
+                android:text="@{expandableWord.word.mean}"
+                app:layout_constraintEnd_toEndOf="@id/txtWord"
+                app:layout_constraintStart_toStartOf="@id/txtWord"
+                app:layout_constraintTop_toBottomOf="@id/txtSpelling"
+                app:setVisible="@{expandableWord.expanded}"
+                tools:text="Hợp đồng" />
+
+            <ImageView
+                android:id="@+id/imgSpeech"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="4dp"
+                android:elevation="3dp"
+                android:clickable="true"
+                android:background="?actionBarItemBackground"
+                android:src="@drawable/ic_speech"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorBlack50" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>
