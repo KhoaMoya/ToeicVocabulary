@@ -15,46 +15,58 @@ class AppRepository(
     val preference: AppSharedPreferences
 ) {
 
-    fun getAllWords(categoryId: Int?):LiveData<List<Word>>{
+    fun getAllWordList(categoryId: Int?):LiveData<List<Word>>{
         categoryId?.let { return wordDao.getAllWordsByCategory(it) }?: return wordDao.getAllWords()
     }
 
-    fun getKnownWords(categoryId: Int?):LiveData<List<Word>>{
-        categoryId?.let { return wordDao.getLearnedWordsByCategory(it) }?: return wordDao.getLearnedWords()
+    fun getKnownWordList(categoryId: Int?):LiveData<List<Word>>{
+        categoryId?.let { return wordDao.getLearnedWordListByCategory(it) }?: return wordDao.getLearnedWordList()
     }
 
-    fun getUnKnownWords(categoryId: Int?):LiveData<List<Word>>{
-        categoryId?.let { return wordDao.getUnknownWordsByCategory(it) }?: return wordDao.getUnknownWords()
+    fun getUnKnownWordList(categoryId: Int?):LiveData<List<Word>>{
+        categoryId?.let { return wordDao.getUnknownWordListByCategory(it) }?: return wordDao.getUnknownWordList()
     }
 
-    fun countWordsLearnedToday(): LiveData<Int> {
+    fun getAllWordIds(categoryId: Int?):LiveData<List<Int>>{
+        categoryId?.let { return wordDao.getAllWordIdsByCategory(it) }?: return wordDao.getAllWordIds()
+    }
+
+    fun getKnownWordIds(categoryId: Int?):LiveData<List<Int>>{
+        categoryId?.let { return wordDao.getLearnedWordIdListByCategory(it) }?: return wordDao.getLearnedWordIds()
+    }
+
+    fun getUnKnownWordIds(categoryId: Int?):LiveData<List<Int>>{
+        categoryId?.let { return wordDao.getUnknownWordIdListByCategory(it) }?: return wordDao.getUnknownWordIdList()
+    }
+
+    fun countWordListLearnedToday(): LiveData<Int> {
         val times = getPeriodDate()
-        return wordDao.countLearnedWordsInTime(times[0], times[1])
+        return wordDao.countLearnedWordListInTime(times[0], times[1])
     }
 
-    fun countWordsLearnedThisWeek(): LiveData<Int> {
+    fun countWordListLearnedThisWeek(): LiveData<Int> {
         val times = getPeriodWeek()
-        return wordDao.countLearnedWordsInTime(times[0], times[1])
+        return wordDao.countLearnedWordListInTime(times[0], times[1])
     }
 
-    fun countWordsLearnedThisMonth(): LiveData<Int> {
+    fun countWordLearnedThisMonth(): LiveData<Int> {
         val times = getPeriodMonth()
-        return wordDao.countLearnedWordsInTime(times[0], times[1])
+        return wordDao.countLearnedWordListInTime(times[0], times[1])
     }
 
-    fun getWordsLearnedToday(): LiveData<List<Word>> {
+    fun getWordLearnedToday(): LiveData<List<Word>> {
         val times = getPeriodDate()
-        return wordDao.getLearnedWordsInTime(times[0], times[1])
+        return wordDao.getLearnedWordListInTime(times[0], times[1])
     }
 
-    fun getWordsLearnedThisWeek(): LiveData<List<Word>> {
+    fun getWordLearnedThisWeek(): LiveData<List<Word>> {
         val times = getPeriodWeek()
-        return wordDao.getLearnedWordsInTime(times[0], times[1])
+        return wordDao.getLearnedWordListInTime(times[0], times[1])
     }
 
-    fun getWordsLearnedThisMonth(): LiveData<List<Word>> {
+    fun getWordLearnedThisMonth(): LiveData<List<Word>> {
         val times = getPeriodMonth()
-        return wordDao.getLearnedWordsInTime(times[0], times[1])
+        return wordDao.getLearnedWordListInTime(times[0], times[1])
     }
 
 }

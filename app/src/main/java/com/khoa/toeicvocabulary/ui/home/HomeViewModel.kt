@@ -33,10 +33,10 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(job + Dispatchers.IO) {
             try {
                 launch { categoriesRecently = repository.categoryDao.getCategoriesRecently() }
-                launch { countWordsLearnedToday = repository.countWordsLearnedToday() }
-                launch { countWordsLearnedThisWeek = repository.countWordsLearnedThisWeek() }
-                launch { countWordsLearnedThisMonth = repository.countWordsLearnedThisMonth() }
-                launch { countAllWordsLearned = repository.wordDao.countLearnedWords() }
+                launch { countWordsLearnedToday = repository.countWordListLearnedToday() }
+                launch { countWordsLearnedThisWeek = repository.countWordListLearnedThisWeek() }
+                launch { countWordsLearnedThisMonth = repository.countWordLearnedThisMonth() }
+                launch { countAllWordsLearned = repository.wordDao.countLearnedWord() }
                 launch { countAllWords = repository.wordDao.countAllWords() }
             } catch (e: Exception) {
                 e.printStackTrace()

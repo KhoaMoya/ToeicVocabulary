@@ -18,7 +18,7 @@ class LearnWordRcvAdapter :
 
     fun setWordList(words: List<Word>) {
         mWordsList = ArrayList(words.map { ExpandableWord(false, it) })
-        notifyDataSetChanged()
+        submitList(mWordsList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LearnWordViewHolder {

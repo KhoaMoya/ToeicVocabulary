@@ -6,20 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.khoa.toeicvocabulary.MyApplication
 import com.khoa.toeicvocabulary.databinding.FragmentLearnWordBinding
 import com.khoa.toeicvocabulary.models.Word
+import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryViewModel
+import com.khoa.toeicvocabulary.ui.main.MainActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LearnWordFragment : Fragment() , LearnWordChangeListener{
+class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeListener {
 
     @Inject
-    lateinit var mViewModel : LearnWordViewModel
-    lateinit var mBinding : FragmentLearnWordBinding
+    lateinit var mViewModel: DetailCategoryViewModel
+    lateinit var mBinding: FragmentLearnWordBinding
+    val wordAdapter = LearnWordRcvAdapter()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity!!.application as MyApplication).appComponent.inject(this)
+        (activity as MainActivity).detailCategoryCompenent.inject(this)
     }
 
     override fun onCreateView(
@@ -28,13 +34,38 @@ class LearnWordFragment : Fragment() , LearnWordChangeListener{
     ): View? {
         return FragmentLearnWordBinding.inflate(inflater).also {
             mBinding = it
-            mViewModel.adapter.learnListener = this
-            mBinding.rcvCategory.adapter = mViewModel.adapter
+            wordAdapter.learnListener = this
+            mBinding.rcvCategory.adapter = wordAdapter
         }.root
     }
 
-    fun setWordsList(words: List<Word>){
-        mViewModel.adapter.setWordList(words)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscriberUi()
+    }
+
+    private fun subscriberUi() {
+        GlobalScope.launch(Dispatchers.Main) {
+            delay(250)
+            when (pageType) {
+                PageType.ALL -> {
+                    mViewModel.multableAllWordList.observe(viewLifecycleOwner, {
+                        wordAdapter.setWordList(it)
+                    })
+                }
+                PageType.Known -> {
+                    mViewModel.multableKnownWordList.observe(viewLifecycleOwner, {
+                        wordAdapter.setWordList(it)
+                    })
+                }
+                PageType.UnKnown -> {
+                    mViewModel.multableUnknownWordList.observe(viewLifecycleOwner, {
+                        wordAdapter.setWordList(it)
+                    })
+                }
+            }
+
+        }
     }
 
     override fun updateWord(word: Word) {

@@ -3,26 +3,15 @@ package com.khoa.toeicvocabulary.ui.detailcategory
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.khoa.toeicvocabulary.models.Word
+import com.khoa.toeicvocabulary.models.Category
 import com.khoa.toeicvocabulary.ui.detailcategory.page.LearnWordFragment
+import com.khoa.toeicvocabulary.ui.detailcategory.page.PageType
 
-class WordsViewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager) {
+class WordsViewPagerAdapter(fragmentManager: FragmentManager, val category: Category?): FragmentPagerAdapter(fragmentManager) {
 
-    private val mAllListFragment = LearnWordFragment()
-    private val mKnownFragment = LearnWordFragment()
-    private val mUnknownFragment = LearnWordFragment()
-
-    fun updateAllList(words: List<Word>){
-        mAllListFragment.setWordsList(words)
-    }
-
-    fun updateKnownList(words: List<Word>){
-        mKnownFragment.setWordsList(words)
-    }
-
-    fun updateUnknownList(words: List<Word>){
-        mUnknownFragment.setWordsList(words)
-    }
+    private val mAllListFragment = LearnWordFragment(PageType.ALL)
+    private val mKnownFragment = LearnWordFragment(PageType.Known)
+    private val mUnknownFragment = LearnWordFragment(PageType.UnKnown)
 
     override fun getItem(position: Int): Fragment {
         when (position) {

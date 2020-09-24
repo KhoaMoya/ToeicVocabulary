@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.khoa.toeicvocabulary.MyApplication
 import com.khoa.toeicvocabulary.R
+import com.khoa.toeicvocabulary.di.component.DetailCategoryComponent
 import com.khoa.toeicvocabulary.ui.home.HomeFragment
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var mViewModel: MainViewModel
+    lateinit var detailCategoryCompenent : DetailCategoryComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

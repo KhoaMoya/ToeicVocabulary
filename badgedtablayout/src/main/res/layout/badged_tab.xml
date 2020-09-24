@@ -42,7 +42,6 @@
         android:layout_marginBottom="6dp"
         android:singleLine="true"
         android:textColor="@color/badge_text_color"
-        android:textSize="@dimen/tab_text_size"
-        android:visibility="gone" />
+        android:textSize="@dimen/tab_text_size"/>
 
 </LinearLayout>
