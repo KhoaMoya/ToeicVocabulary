@@ -7,6 +7,7 @@
         android:id="@+id/rcvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="vertical"
         tools:listitem="@layout/learn_word_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context=".ui.detailcategory.page.LearnWordFragment"/>

@@ -21,21 +21,14 @@ class DetailCategoryViewModel @Inject constructor(
 ) : ViewModel() {
     lateinit var vpAdapter: WordsViewPagerAdapter
 
-    var allWordList: Deferred<LiveData<List<Word>>>
-    var knownWordList: Deferred<LiveData<List<Word>>>
-    var unknownWordList: Deferred<LiveData<List<Word>>>
-    val titleName = MutableLiveData<String>()
+    var allWordList: Deferred<LiveData<List<Word>>> = viewModelScope.async { repository.getAllWordList(category?.id) }
+    var knownWordList: Deferred<LiveData<List<Word>>> = viewModelScope.async { repository.getKnownWordList(category?.id) }
+    var unknownWordList: Deferred<LiveData<List<Word>>> = viewModelScope.async { repository.getUnKnownWordList(category?.id) }
+    val titleName = MutableLiveData(category?.name ?: "All words")
 
     val mutableAllWordList = MutableLiveData<List<Word>>()
     val mutableKnownWordList = MutableLiveData<List<Word>>()
     val mutableUnknownWordList = MutableLiveData<List<Word>>()
-
-    init {
-        titleName.value = category?.name ?: "All words"
-        allWordList = viewModelScope.async { repository.getAllWordList(category?.id) }
-        knownWordList = viewModelScope.async { repository.getKnownWordList(category?.id) }
-        unknownWordList = viewModelScope.async { repository.getUnKnownWordList(category?.id) }
-    }
 
     fun updateWord(word: Word){
         viewModelScope.launch (Dispatchers.IO) {

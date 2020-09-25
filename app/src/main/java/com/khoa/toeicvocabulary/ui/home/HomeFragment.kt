@@ -16,6 +16,8 @@ import com.khoa.toeicvocabulary.models.Category
 import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
 import com.khoa.toeicvocabulary.ui.listcategory.ListCategoryFragment
 import com.khoa.toeicvocabulary.ui.main.MainActivity
+import com.khoa.toeicvocabulary.ui.wordstatistics.StatisticType
+import com.khoa.toeicvocabulary.ui.wordstatistics.WordStatisticFragment
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
@@ -55,6 +57,10 @@ class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
         mBinding.txtSeeAllWords.setOnClickListener(this)
         mBinding.txtSeeAllCategories.setOnClickListener(this)
         mBinding.imgEditTarget.setOnClickListener(this)
+        mBinding.btnDetailWordToday.setOnClickListener(this)
+        mBinding.btnDetailWordWeek.setOnClickListener(this)
+        mBinding.btnDetailWordMonth.setOnClickListener(this)
+
     }
 
     private fun subscribeUi() {
@@ -92,6 +98,15 @@ class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
             }
             R.id.txtSeeAllCategories -> {
                 (activity as MainActivity).dispatcherTo(ListCategoryFragment())
+            }
+            R.id.btnDetailWordToday -> {
+                (activity as MainActivity).dispatcherTo(WordStatisticFragment(StatisticType.TODAY))
+            }
+            R.id.btnDetailWordWeek -> {
+                (activity as MainActivity).dispatcherTo(WordStatisticFragment(StatisticType.WEEK))
+            }
+            R.id.btnDetailWordMonth -> {
+                (activity as MainActivity).dispatcherTo(WordStatisticFragment(StatisticType.MONTH))
             }
             else -> {
             }

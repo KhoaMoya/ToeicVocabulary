@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.khoa.toeicvocabulary.bases.ItemClickListener
 import com.khoa.toeicvocabulary.databinding.FragmentLearnWordBinding
 import com.khoa.toeicvocabulary.models.Word
 import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
@@ -15,12 +16,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeListener {
+class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeListener, ItemClickListener<Word> {
 
     @Inject
     lateinit var mViewModel: DetailCategoryViewModel
     lateinit var mBinding: FragmentLearnWordBinding
-    val wordAdapter = LearnWordRcvAdapter()
+    private val wordAdapter = LearnWordListAdapter()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -34,6 +35,7 @@ class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeLis
         return FragmentLearnWordBinding.inflate(inflater).also {
             mBinding = it
             wordAdapter.learnListener = this
+            wordAdapter.itemSpellClickListener = this
             mBinding.rcvCategory.adapter = wordAdapter
         }.root
     }
@@ -69,5 +71,9 @@ class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeLis
 
     override fun updateWord(word: Word) {
         mViewModel.updateWord(word)
+    }
+
+    override fun onClickItem(item: Word) {
+
     }
 }

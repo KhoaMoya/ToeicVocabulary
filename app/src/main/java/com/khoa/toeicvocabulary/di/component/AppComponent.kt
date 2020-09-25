@@ -8,6 +8,7 @@ import com.khoa.toeicvocabulary.repository.AppRepository
 import com.khoa.toeicvocabulary.ui.home.HomeFragment
 import com.khoa.toeicvocabulary.ui.listcategory.ListCategoryFragment
 import com.khoa.toeicvocabulary.ui.main.MainActivity
+import com.khoa.toeicvocabulary.ui.wordstatistics.WordStatisticFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -36,6 +37,7 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(homeFragment: HomeFragment)
     fun inject(listCategoryFragment: ListCategoryFragment)
+    fun inject(wordStatisticFragment: WordStatisticFragment)
 
     fun detailCategoryComponent(): DetailCategoryComponent.Builder
 }

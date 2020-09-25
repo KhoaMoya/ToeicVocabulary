@@ -66,10 +66,10 @@
     </style>
 
     <style name="ButtonStyle.Select">
-        <item name="background">@drawable/bg_btn_select</item>
-        <item name="minHeight">64dp</item>
+        <item name="android:background">@drawable/bg_btn_select</item>
+        <item name="android:minHeight">64dp</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/productsans_medium</item>
     </style>
 

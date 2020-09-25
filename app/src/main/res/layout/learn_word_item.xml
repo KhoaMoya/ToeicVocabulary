@@ -37,7 +37,7 @@
                 style="@style/TextStyle.Word"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_margin"
+                android:layout_marginStart="@dimen/content_margin"
                 android:text="@{expandableWord.word.name}"
                 app:layout_constraintEnd_toStartOf="@id/imgSpeech"
                 app:layout_constraintStart_toEndOf="@id/cbKnown"
@@ -61,10 +61,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/item_margin"
                 android:text="@{expandableWord.word.mean}"
+                app:setVisible="@{expandableWord.expanded}"
                 app:layout_constraintEnd_toEndOf="@id/txtWord"
                 app:layout_constraintStart_toStartOf="@id/txtWord"
                 app:layout_constraintTop_toBottomOf="@id/txtSpelling"
-                app:setVisible="@{expandableWord.expanded}"
                 tools:text="Hợp đồng" />
 
             <ImageView
@@ -73,7 +73,6 @@
                 android:layout_height="40dp"
                 android:padding="4dp"
                 android:elevation="3dp"
-                android:clickable="true"
                 android:background="?actionBarItemBackground"
                 android:src="@drawable/ic_speech"
                 app:layout_constraintEnd_toEndOf="parent"

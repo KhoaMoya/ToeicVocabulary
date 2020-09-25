@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,8 +28,8 @@
                     style="@style/TextStyle.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
                     android:layout_marginTop="@dimen/content_margin"
+                    android:text="@string/app_name"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -46,11 +47,14 @@
                     android:id="@+id/txtSeeAllWords"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?actionBarItemBackground"
+                    android:padding="10dp"
                     android:text="See all"
                     android:textColor="@color/colorBlack50"
+                    app:layout_constraintBottom_toBottomOf="@id/txtRatioAllWordsLearned"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+                    app:layout_constraintTop_toTopOf="@id/txtRatioAllWordsLearned" />
 
                 <TextView
                     android:id="@+id/txtTargetLabel"
@@ -279,8 +283,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginVertical="@dimen/content_margin"
-                        android:layout_marginEnd="@dimen/content_margin"
+                        android:background="?actionBarItemBackground"
+                        android:padding="@dimen/padding"
                         android:text="See all"
                         android:textColor="@color/colorBlack50" />
 
@@ -295,13 +299,14 @@
                 </RelativeLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
         <ProgressBar
             android:id="@+id/progressLoading"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="3dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/bg_round_black"
+            android:padding="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
