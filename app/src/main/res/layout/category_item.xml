@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/item_margin"
-            android:layout_marginBottom="@dimen/item_margin"
+            android:layout_marginVertical="5dp"
             android:background="@drawable/ripple_item"
             android:padding="@dimen/padding">
 

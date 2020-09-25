@@ -1,6 +1,7 @@
 package com.khoa.toeicvocabulary.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,16 @@ import com.khoa.toeicvocabulary.R
 import com.khoa.toeicvocabulary.bases.ItemClickListener
 import com.khoa.toeicvocabulary.databinding.FragmentHomeBinding
 import com.khoa.toeicvocabulary.models.Category
-import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryFragment
+import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
+import com.khoa.toeicvocabulary.ui.listcategory.ListCategoryFragment
 import com.khoa.toeicvocabulary.ui.main.MainActivity
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
+
+    companion object{
+        val CATEGORY_KEY = "category key"
+    }
 
     @Inject
     lateinit var mViewModel: HomeViewModel
@@ -82,7 +88,10 @@ class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.txtSeeAllWords -> {
-                (activity as MainActivity).dispatcherTo(DetailCategoryFragment())
+                startDetailCategoryActivity(null)
+            }
+            R.id.txtSeeAllCategories -> {
+                (activity as MainActivity).dispatcherTo(ListCategoryFragment())
             }
             else -> {
             }
@@ -91,6 +100,12 @@ class HomeFragment : Fragment(), OnClickListener, ItemClickListener<Category> {
 
 
     override fun onClickItem(item: Category) {
-        (activity as MainActivity).dispatcherTo(DetailCategoryFragment(item))
+        startDetailCategoryActivity(item)
+    }
+
+    private fun startDetailCategoryActivity(category: Category?){
+        val intent =  Intent(activity, DetailCategoryActivity::class.java)
+        intent.putExtra(CATEGORY_KEY, category)
+        startActivity(intent)
     }
 }

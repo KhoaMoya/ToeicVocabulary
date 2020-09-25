@@ -16,7 +16,7 @@ class CategoryRcvAdapter :
 
     fun setCategoriesList(categories: List<Category>) {
         this.mCategoriesList = categories
-        notifyDataSetChanged()
+        submitList(mCategoriesList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {

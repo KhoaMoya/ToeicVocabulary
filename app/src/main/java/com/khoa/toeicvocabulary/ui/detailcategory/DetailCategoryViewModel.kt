@@ -26,9 +26,9 @@ class DetailCategoryViewModel @Inject constructor(
     var unknownWordList: Deferred<LiveData<List<Word>>>
     val titleName = MutableLiveData<String>()
 
-    val multableAllWordList = MutableLiveData<List<Word>>()
-    val multableKnownWordList = MutableLiveData<List<Word>>()
-    val multableUnknownWordList = MutableLiveData<List<Word>>()
+    val mutableAllWordList = MutableLiveData<List<Word>>()
+    val mutableKnownWordList = MutableLiveData<List<Word>>()
+    val mutableUnknownWordList = MutableLiveData<List<Word>>()
 
     init {
         titleName.value = category?.name ?: "All words"
@@ -39,8 +39,9 @@ class DetailCategoryViewModel @Inject constructor(
 
     fun updateWord(word: Word){
         viewModelScope.launch (Dispatchers.IO) {
+            val time = System.currentTimeMillis()
             repository.wordDao.update(word)
-            repository.categoryDao.updateKnownWords(word.categoryId)
+            repository.categoryDao.updateKnownWords(word.categoryId, time)
         }
     }
 }

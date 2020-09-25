@@ -3,9 +3,10 @@ package com.khoa.toeicvocabulary.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
-data class Category(
+data class Category (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var name: String,
@@ -15,4 +16,4 @@ data class Category(
     var wordCount: Int,
     @ColumnInfo(name = "update_time")
     var updateTime: Long
-)
+): Serializable

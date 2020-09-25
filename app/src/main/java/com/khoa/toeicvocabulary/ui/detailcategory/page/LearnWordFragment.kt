@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.khoa.toeicvocabulary.databinding.FragmentLearnWordBinding
 import com.khoa.toeicvocabulary.models.Word
+import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
 import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryViewModel
-import com.khoa.toeicvocabulary.ui.main.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeLis
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity as MainActivity).detailCategoryCompenent.inject(this)
+        (activity as DetailCategoryActivity).detailCategoryComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -46,20 +45,20 @@ class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeLis
 
     private fun subscriberUi() {
         GlobalScope.launch(Dispatchers.Main) {
-            delay(250)
+//            delay(250)
             when (pageType) {
                 PageType.ALL -> {
-                    mViewModel.multableAllWordList.observe(viewLifecycleOwner, {
+                    mViewModel.mutableAllWordList.observe(viewLifecycleOwner, {
                         wordAdapter.setWordList(it)
                     })
                 }
                 PageType.Known -> {
-                    mViewModel.multableKnownWordList.observe(viewLifecycleOwner, {
+                    mViewModel.mutableKnownWordList.observe(viewLifecycleOwner, {
                         wordAdapter.setWordList(it)
                     })
                 }
                 PageType.UnKnown -> {
-                    mViewModel.multableUnknownWordList.observe(viewLifecycleOwner, {
+                    mViewModel.mutableUnknownWordList.observe(viewLifecycleOwner, {
                         wordAdapter.setWordList(it)
                     })
                 }

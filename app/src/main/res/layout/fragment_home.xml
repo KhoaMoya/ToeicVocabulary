@@ -275,7 +275,7 @@
                         android:text="Categories recently" />
 
                     <TextView
-                        android:id="@+id/txt_see_all_categories"
+                        android:id="@+id/txtSeeAllCategories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

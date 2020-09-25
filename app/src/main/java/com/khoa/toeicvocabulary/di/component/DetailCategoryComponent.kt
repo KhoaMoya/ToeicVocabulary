@@ -2,7 +2,7 @@ package com.khoa.toeicvocabulary.di.component
 
 import com.khoa.toeicvocabulary.di.scope.DetailCategoryScope
 import com.khoa.toeicvocabulary.models.Category
-import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryFragment
+import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
 import com.khoa.toeicvocabulary.ui.detailcategory.page.LearnWordFragment
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -17,6 +17,6 @@ interface DetailCategoryComponent {
         fun build(): DetailCategoryComponent
     }
 
-    fun inject(detailCategoryFragment: DetailCategoryFragment)
+    fun inject(detailCategoryFragment: DetailCategoryActivity)
     fun inject(leardWordFragment: LearnWordFragment)
 }
