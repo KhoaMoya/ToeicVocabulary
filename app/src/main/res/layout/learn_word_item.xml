@@ -7,7 +7,7 @@
 
         <variable
             name="expandableWord"
-            type="com.khoa.toeicvocabulary.models.ExpandableWord" />
+            type="com.khoa.toeicvocabulary.bases.ExpandableWord" />
     </data>
 
     <RelativeLayout

@@ -15,7 +15,10 @@ import com.khoa.toeicvocabulary.models.Category
 import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
 import com.khoa.toeicvocabulary.ui.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_list_category.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ListCategoryFragment : Fragment(), ItemClickListener<Category> {
@@ -50,7 +53,8 @@ class ListCategoryFragment : Fragment(), ItemClickListener<Category> {
     }
 
     private fun subscribeUi(){
-        runBlocking {
+        GlobalScope.launch (Dispatchers.Main){
+            delay(300)
             mViewModel.allCategoryList.await().observe(viewLifecycleOwner, {
                 txtTotalCategories.text = "Total: ${it.size}"
                 categoryAdapter.setCategoriesList(it)

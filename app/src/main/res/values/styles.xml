@@ -9,7 +9,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="TextStyle"/>
+    <style name="TextStyle" />
 
     <style name="TextStyle.Item">
         <item name="fontFamily">@font/productsans_medium</item>
@@ -54,8 +54,8 @@
         <item name="fontFamily">@font/productsans_light</item>
         <item name="android:textColor">@color/colorBlack60</item>
     </style>
-    
-    <style name="ButtonStyle"/>
+
+    <style name="ButtonStyle" />
 
     <style name="ButtonStyle.Action">
         <item name="android:background">@drawable/bg_btn_action</item>
@@ -66,11 +66,13 @@
     </style>
 
     <style name="ButtonStyle.Select">
-        <item name="android:background">@drawable/bg_btn_select</item>
-        <item name="android:minHeight">64dp</item>
+        <item name="android:background">@drawable/bg_unselected_answer</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">18sp</item>
-        <item name="fontFamily">@font/productsans_medium</item>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/productsans_regular</item>
     </style>
 
 </resources>

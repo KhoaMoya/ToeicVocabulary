@@ -1,6 +1,7 @@
 package com.khoa.toeicvocabulary.ui.wordstatistics
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,9 @@ import androidx.fragment.app.Fragment
 import com.khoa.toeicvocabulary.MyApplication
 import com.khoa.toeicvocabulary.R
 import com.khoa.toeicvocabulary.bases.ItemClickListener
+import com.khoa.toeicvocabulary.bases.StatisticType
 import com.khoa.toeicvocabulary.models.Word
+import com.khoa.toeicvocabulary.ui.review.ReviewActivity
 import kotlinx.android.synthetic.main.fragment_word_statistic.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -37,28 +40,16 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), Item
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initActions()
-        setTitle()
         wordAdapter.itemSpellClickListener = this
         rcvListWord.adapter = wordAdapter
         subscribeUi()
     }
 
-    private fun setTitle(){
-        when (statisticType) {
-            StatisticType.TODAY -> {
-                txtTitleWordStatistic.text = "Words learn today"
-            }
-            StatisticType.WEEK -> {
-                txtTitleWordStatistic.text = "Words learn this week"
-            }
-            StatisticType.MONTH -> {
-                txtTitleWordStatistic.text = "Words learn this month"
-            }
-        }
-    }
-
     private fun initActions(){
         imgBack.setOnClickListener { activity!!.onBackPressed() }
+        btnReview.setOnClickListener{
+            startActivity(Intent(activity!!, ReviewActivity::class.java))
+        }
     }
 
     private fun subscribeUi(){
@@ -68,8 +59,11 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), Item
             mViewModel.wordList.await().observe(viewLifecycleOwner, {
                 txtTotalWords.text = "Total: ${it.size}"
                 wordAdapter.setWordList(it)
+                mViewModel.putWordListToGraph(it)
             })
         }
+
+        mViewModel.titleName.observe(viewLifecycleOwner, {txtTitleWordStatistic.text = it})
     }
 
     override fun onClickItem(item: Word) {

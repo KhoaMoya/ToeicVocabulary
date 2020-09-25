@@ -18,5 +18,5 @@ interface DetailCategoryComponent {
     }
 
     fun inject(detailCategoryFragment: DetailCategoryActivity)
-    fun inject(leardWordFragment: LearnWordFragment)
+    fun inject(learnWordFragment: LearnWordFragment)
 }

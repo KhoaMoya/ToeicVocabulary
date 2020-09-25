@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import com.khoa.toeicvocabulary.MyApplication
 import com.khoa.toeicvocabulary.R
 import com.khoa.toeicvocabulary.bases.ItemClickListener
+import com.khoa.toeicvocabulary.bases.StatisticType
 import com.khoa.toeicvocabulary.databinding.FragmentHomeBinding
 import com.khoa.toeicvocabulary.models.Category
 import com.khoa.toeicvocabulary.ui.detailcategory.DetailCategoryActivity
 import com.khoa.toeicvocabulary.ui.listcategory.ListCategoryFragment
 import com.khoa.toeicvocabulary.ui.main.MainActivity
-import com.khoa.toeicvocabulary.ui.wordstatistics.StatisticType
 import com.khoa.toeicvocabulary.ui.wordstatistics.WordStatisticFragment
 import javax.inject.Inject
 

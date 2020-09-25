@@ -8,6 +8,7 @@ import com.khoa.toeicvocabulary.di.scope.DetailCategoryScope
 import com.khoa.toeicvocabulary.models.Category
 import com.khoa.toeicvocabulary.models.Word
 import com.khoa.toeicvocabulary.repository.AppRepository
+import com.khoa.toeicvocabulary.repository.ReviewWordManager
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @DetailCategoryScope
 class DetailCategoryViewModel @Inject constructor(
     val repository: AppRepository,
+    val reviewWordManager: ReviewWordManager,
     val category: Category?
 ) : ViewModel() {
     lateinit var vpAdapter: WordsViewPagerAdapter
@@ -36,5 +38,9 @@ class DetailCategoryViewModel @Inject constructor(
             repository.wordDao.update(word)
             repository.categoryDao.updateKnownWords(word.categoryId, time)
         }
+    }
+
+    fun putWordListToGraph(list: List<Word>){
+        reviewWordManager.putWords(list, "Review ${titleName.value}")
     }
 }

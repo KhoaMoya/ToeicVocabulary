@@ -6,6 +6,9 @@ import com.khoa.toeicvocabulary.models.Word
 
 @Dao
 interface WordDao {
+    // random mean
+    @Query("select mean from word order by random() limit 1")
+    fun getRandomWordMean(): String
 
     // word --------------
     @Query("select * from word where id=:id")

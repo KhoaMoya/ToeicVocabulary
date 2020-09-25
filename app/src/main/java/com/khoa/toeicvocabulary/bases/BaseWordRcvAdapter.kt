@@ -2,10 +2,10 @@ package com.khoa.toeicvocabulary.bases
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.khoa.toeicvocabulary.models.ExpandableWord
 import com.khoa.toeicvocabulary.models.Word
 
 abstract class BaseWordRcvAdapter :
@@ -41,5 +41,20 @@ abstract class BaseWordRcvAdapter :
         }
 
         abstract fun bind(expandableWord: ExpandableWord?)
+    }
+}
+
+class ExpandableWord (var isExpanded: Boolean, var word: Word){
+
+    class DiffCallback : DiffUtil.ItemCallback<ExpandableWord>() {
+
+        override fun areItemsTheSame(oldItem: ExpandableWord, newItem: ExpandableWord): Boolean {
+            return oldItem.word.id == newItem.word.id
+        }
+
+        override fun areContentsTheSame(oldItem: ExpandableWord, newItem: ExpandableWord): Boolean {
+            return oldItem.word.id == newItem.word.id
+                    && oldItem.word.status == newItem.word.status
+        }
     }
 }
