@@ -87,7 +87,7 @@ class ReviewViewModel @Inject constructor(
     }
 
     private fun isFinish(): Boolean {
-        return wordIndex.value!! >= mReviewWordList.size+1
+        return wordIndex.value!! >= mReviewWordList.size
     }
 }
 

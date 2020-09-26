@@ -25,8 +25,10 @@ class HomeViewModel @Inject constructor(
     lateinit var countWordsLearnedThisMonth: LiveData<Int>
     lateinit var countAllWordsLearned: LiveData<Int>
     lateinit var countAllWords: LiveData<Int>
-    var isLoading = MutableLiveData<Boolean>(true)
+    var isLoading = MutableLiveData(true)
     val job = Job()
+
+    lateinit var countWordInDayRecently : ArrayList<DayWord>
 
     init {
         isLoading.value = true
@@ -38,6 +40,7 @@ class HomeViewModel @Inject constructor(
                 launch { countWordsLearnedThisMonth = repository.countWordLearnedThisMonth() }
                 launch { countAllWordsLearned = repository.wordDao.countLearnedWord() }
                 launch { countAllWords = repository.wordDao.countAllWords() }
+                launch { countWordInDayRecently = repository.getDayWordRecentlyList() }
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -46,8 +49,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()
     }
+
+    fun saveTargetWordPerDay(number: Int){
+        repository.preference.setTargetWordsDay(number)
+        targetWordsPerDay.value = number
+    }
+}
+
+class DayWord(
+    var dateName: String = "",
+    var startTime: Long = 0L,
+    var endTime: Long = 0L
+){
+    lateinit var count: LiveData<Int>
 }

@@ -10,7 +10,7 @@ class AppSharedPreferences (application: Application) {
     var pref: SharedPreferences = application.getSharedPreferences(PreferenceName, Context.MODE_PRIVATE)
 
     fun getTargetWordsDay(): Int {
-        return pref.getInt(TargetWordsPerDay, 0)
+        return pref.getInt(TargetWordsPerDay, 10)
     }
 
     fun setTargetWordsDay(target: Int){

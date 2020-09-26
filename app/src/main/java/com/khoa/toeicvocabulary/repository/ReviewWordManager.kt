@@ -21,4 +21,6 @@ class ReviewWordManager @Inject constructor() {
     fun clear() {
         wordList.clear()
     }
+
+    fun isEmpty() = wordList.isEmpty()
 }

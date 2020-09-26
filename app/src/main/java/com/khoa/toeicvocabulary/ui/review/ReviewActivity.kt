@@ -21,12 +21,16 @@ class ReviewActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         (application as MyApplication).appComponent.inject(this)
-        setContentView(R.layout.activity_review)
+        if(mViewModel.reviewWordManager.isEmpty()) {
+            finish()
+        } else {
+            setContentView(R.layout.activity_review)
 
-        txtTitleReview.text = mViewModel.reviewWordManager.title
-        initActions()
-        subscribeUi()
-        startPlay()
+            txtTitleReview.text = mViewModel.reviewWordManager.title
+            initActions()
+            subscribeUi()
+            startPlay()
+        }
     }
 
     private fun initActions() {

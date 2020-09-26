@@ -12,8 +12,8 @@ import com.khoa.toeicvocabulary.models.Category
 
 @BindingAdapter("setCategoryProgress")
 fun setCategoryProgress(progressBar: ProgressBar, category: Category) {
-    if (category.wordCount == 0) progressBar.progress = 0
-    else progressBar.progress = category.known * 100 / category.wordCount
+    if (category.wordCount == 0) progressBar.setProgress(0, true)
+    else progressBar.setProgress(category.known * 100 / category.wordCount, true)
 }
 
 @BindingAdapter("setCategoryProgressText")

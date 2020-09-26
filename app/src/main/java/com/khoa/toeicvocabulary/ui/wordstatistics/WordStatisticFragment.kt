@@ -45,8 +45,6 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(),
         wordAdapter.itemSpellClickListener = this
         rcvListWord.adapter = wordAdapter
         subscribeUi()
-
-
     }
 
     private fun initActions() {

@@ -5,7 +5,9 @@ import com.khoa.toeicvocabulary.models.Word
 import com.khoa.toeicvocabulary.repository.local.AppSharedPreferences
 import com.khoa.toeicvocabulary.repository.local.CategoryDao
 import com.khoa.toeicvocabulary.repository.local.WordDao
+import com.khoa.toeicvocabulary.ui.home.DayWord
 import com.khoa.toeicvocabulary.utils.getPeriodDate
+import com.khoa.toeicvocabulary.utils.getPeriodDayRecentlyList
 import com.khoa.toeicvocabulary.utils.getPeriodMonth
 import com.khoa.toeicvocabulary.utils.getPeriodWeek
 
@@ -14,6 +16,13 @@ class AppRepository(
     val wordDao: WordDao,
     val preference: AppSharedPreferences
 ) {
+    fun getDayWordRecentlyList(duration: Int = 7): ArrayList<DayWord>{
+        val list = getPeriodDayRecentlyList(duration)
+        list.forEach {
+            it.count = wordDao.countLearnedWordListInTime(it.startTime, it.endTime)
+        }
+        return list
+    }
 
     fun getAllWordList(categoryId: Int?):LiveData<List<Word>>{
         categoryId?.let { return wordDao.getAllWordsByCategory(it) }?: return wordDao.getAllWords()
@@ -25,18 +34,6 @@ class AppRepository(
 
     fun getUnKnownWordList(categoryId: Int?):LiveData<List<Word>>{
         categoryId?.let { return wordDao.getUnknownWordListByCategory(it) }?: return wordDao.getUnknownWordList()
-    }
-
-    fun getAllWordIds(categoryId: Int?):LiveData<List<Int>>{
-        categoryId?.let { return wordDao.getAllWordIdsByCategory(it) }?: return wordDao.getAllWordIds()
-    }
-
-    fun getKnownWordIds(categoryId: Int?):LiveData<List<Int>>{
-        categoryId?.let { return wordDao.getLearnedWordIdListByCategory(it) }?: return wordDao.getLearnedWordIds()
-    }
-
-    fun getUnKnownWordIds(categoryId: Int?):LiveData<List<Int>>{
-        categoryId?.let { return wordDao.getUnknownWordIdListByCategory(it) }?: return wordDao.getUnknownWordIdList()
     }
 
     fun countWordListLearnedToday(): LiveData<Int> {

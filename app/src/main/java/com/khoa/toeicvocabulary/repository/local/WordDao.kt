@@ -15,9 +15,6 @@ interface WordDao {
     fun getWord(id: Int): Word
 
     // all word -----------
-    @Query("select id from word")
-    fun getAllWordIds(): LiveData<List<Int>>
-
     @Query("select count(*) from word")
     fun countAllWords(): LiveData<Int>
 
@@ -27,13 +24,7 @@ interface WordDao {
     @Query("select * from word where category_id=:categoryId")
     fun getAllWordsByCategory(categoryId: Int): LiveData<List<Word>>
 
-    @Query("select id from word where category_id=:categoryId")
-    fun getAllWordIdsByCategory(categoryId: Int): LiveData<List<Int>>
-
     // known word ----------
-    @Query("select id from word where status=1")
-    fun getLearnedWordIds(): LiveData<List<Int>>
-
     @Query("select count(*) from word where status=1")
     fun countLearnedWord(): LiveData<Int>
 
@@ -45,9 +36,6 @@ interface WordDao {
 
     @Query("select * from word where status=1 and category_id=:categoryId")
     fun getLearnedWordListByCategory(categoryId: Int): LiveData<List<Word>>
-
-    @Query("select id from word where status=1 and category_id=:categoryId")
-    fun getLearnedWordIdListByCategory(categoryId: Int): LiveData<List<Int>>
 
     @Query("select count(*) from word where status=1 and date>=:startTime and date<:endTime")
     fun countLearnedWordListInTime(startTime: Long, endTime: Long): LiveData<Int>
@@ -62,14 +50,8 @@ interface WordDao {
     @Query("select * from word where status=0 and category_id=:categoryId")
     fun getUnknownWordListByCategory(categoryId: Int): LiveData<List<Word>>
 
-    @Query("select id from word where status=0 and category_id=:categoryId")
-    fun getUnknownWordIdListByCategory(categoryId: Int): LiveData<List<Int>>
-
     @Query("select * from word where status=0")
     fun getUnknownWordList(): LiveData<List<Word>>
-
-    @Query("select id from word where status=0")
-    fun getUnknownWordIdList(): LiveData<List<Int>>
 
     //-------
 
