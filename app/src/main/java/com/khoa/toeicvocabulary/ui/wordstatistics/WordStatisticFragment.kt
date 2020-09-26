@@ -20,7 +20,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), ItemClickListener<Word>{
+class WordStatisticFragment(val statisticType: StatisticType) : Fragment(),
+    ItemClickListener<Word> {
     @Inject
     lateinit var mViewModel: WordStatisticViewModel
     private val wordAdapter = WordStatisticListAdapter()
@@ -30,6 +31,7 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), Item
         (activity!!.application as MyApplication).appComponent.inject(this)
         mViewModel.initWordList(statisticType)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,16 +45,18 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), Item
         wordAdapter.itemSpellClickListener = this
         rcvListWord.adapter = wordAdapter
         subscribeUi()
+
+
     }
 
-    private fun initActions(){
+    private fun initActions() {
         imgBack.setOnClickListener { activity!!.onBackPressed() }
-        btnReview.setOnClickListener{
+        btnReview.setOnClickListener {
             startActivity(Intent(activity!!, ReviewActivity::class.java))
         }
     }
 
-    private fun subscribeUi(){
+    private fun subscribeUi() {
 
         GlobalScope.launch(Dispatchers.Main) {
             delay(300)
@@ -63,9 +67,10 @@ class WordStatisticFragment(val statisticType: StatisticType) : Fragment(), Item
             })
         }
 
-        mViewModel.titleName.observe(viewLifecycleOwner, {txtTitleWordStatistic.text = it})
+        mViewModel.titleName.observe(viewLifecycleOwner, { txtTitleWordStatistic.text = it })
     }
 
     override fun onClickItem(item: Word) {
+        (activity?.application as MyApplication).speak(item.name)
     }
 }

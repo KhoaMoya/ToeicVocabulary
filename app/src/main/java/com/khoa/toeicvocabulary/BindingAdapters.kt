@@ -38,3 +38,15 @@ fun setChecked(checkbox: CheckBox, status: Int) {
     checkbox.isChecked = status == 1
 }
 
+@BindingAdapter("setTextMultiline")
+fun setTextMultiline(txt: TextView, text: String) {
+    val splits = text.split("|")
+    txt.text = ""
+    splits.forEachIndexed { index, s ->
+        txt.append(s)
+        if (index < splits.size-1) {
+            txt.append(System.getProperty("line.separator"))
+        }
+    }
+}
+

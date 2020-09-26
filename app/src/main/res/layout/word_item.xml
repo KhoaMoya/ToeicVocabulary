@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="expandableWord"
+            type="com.khoa.toeicvocabulary.bases.ExpandableWord" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/item_margin"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/ripple_item"
+        android:padding="@dimen/padding">
+
+        <TextView
+            android:id="@+id/txtWordName"
+            style="@style/TextStyle.Word"
+            android:layout_width="0dp"
+            android:text="@{expandableWord.word.name}"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/imgSpeech"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Vocabulary" />
+
+        <TextView
+            android:id="@+id/txtSpelling"
+            style="@style/TextStyle.Spelling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{expandableWord.word.spelling}"
+            app:layout_constraintEnd_toEndOf="@id/txtWordName"
+            app:layout_constraintStart_toStartOf="@id/txtWordName"
+            app:layout_constraintTop_toBottomOf="@id/txtWordName"
+            tools:text="Vocabulary" />
+
+        <TextView
+            android:id="@+id/txtMean"
+            style="@style/TextStyle.Mean"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            app:setVisible="@{expandableWord.expanded}"
+            app:setTextMultiline="@{expandableWord.word.mean}"
+            app:layout_constraintEnd_toEndOf="@id/txtWordName"
+            app:layout_constraintStart_toStartOf="@id/txtWordName"
+            app:layout_constraintTop_toBottomOf="@id/txtSpelling"
+            tools:text="Vocabulary" />
+
+        <ImageView
+            android:id="@+id/imgSpeech"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?actionBarItemBackground"
+            android:elevation="3dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_speech"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorBlack50" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/resultLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn_action"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsans_regular"
+            android:gravity="center"
+            android:text="Result review"
+            android:textColor="@color/colorBlack50"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/txtCorrectCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/productsans_medium"
+            android:textColor="@color/colorAccent"
+            android:textSize="46sp"
+            tools:text="36" />
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/colorBlack20" />
+
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/productsans_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="30sp"
+            tools:text="40" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnRetry"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_btn_action"
+        android:fontFamily="@font/productsans_medium"
+        android:gravity="center"
+        android:text="Retry"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/btnCloseAndBack"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_action"
+        android:fontFamily="@font/productsans_medium"
+        android:gravity="center"
+        android:text="Close and Back"
+        android:textColor="@color/colorPurple"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+</LinearLayout>

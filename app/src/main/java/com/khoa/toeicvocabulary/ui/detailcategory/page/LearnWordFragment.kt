@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.khoa.toeicvocabulary.MyApplication
 import com.khoa.toeicvocabulary.bases.ItemClickListener
 import com.khoa.toeicvocabulary.databinding.FragmentLearnWordBinding
 import com.khoa.toeicvocabulary.models.Word
@@ -74,6 +75,6 @@ class LearnWordFragment(val pageType: PageType) : Fragment(), LearnWordChangeLis
     }
 
     override fun onClickItem(item: Word) {
-
+        (activity?.application as MyApplication).speak(item.name)
     }
 }
